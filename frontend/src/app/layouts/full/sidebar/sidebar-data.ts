@@ -43,6 +43,16 @@ export const navItems: NavItem[] = [
     route: '/ui-components/forms',
   },
   {
+    displayName: 'Registro Prod',
+    iconName: 'clipboard-text',
+    route: '/ui-components/registrar_producto',
+  },
+  {
+    displayName: 'Products',
+    iconName: 'table',
+    route: '/ui-components/products',
+  },
+  {
     displayName: 'Tables',
     iconName: 'table',
     route: '/ui-components/tables',
