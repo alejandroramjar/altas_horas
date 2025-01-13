@@ -9,10 +9,9 @@ interface msgs {
 }
 
 @Component({
-  selector: 'app-my-contacts',
-  standalone: true,
-  imports: [MaterialModule],
-  templateUrl: './my-contacts.component.html',
+    selector: 'app-my-contacts',
+    imports: [MaterialModule],
+    templateUrl: './my-contacts.component.html'
 })
 export class AppMyContactsComponent {
   // This is for Mymessages

@@ -13,11 +13,10 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { BrandingComponent } from '../sidebar/branding.component';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [RouterModule, CommonModule, NgScrollbarModule, TablerIconsModule, MaterialModule, BrandingComponent],
-  templateUrl: './header.component.html',
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-header',
+    imports: [RouterModule, CommonModule, NgScrollbarModule, TablerIconsModule, MaterialModule, BrandingComponent],
+    templateUrl: './header.component.html',
+    encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent {
   @Input() showToggle = true;

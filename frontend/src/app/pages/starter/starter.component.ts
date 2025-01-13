@@ -9,18 +9,17 @@ import { AppProfileCardComponent } from 'src/app/components/profile-card/profile
 
 
 @Component({
-  selector: 'app-starter',
-  standalone: true,
-  imports: [
-    MaterialModule,
-    AppSalesOverviewComponent,
-    AppSalesOurVisitorsComponent,
-    AppProfileCardComponent,
-    AppMyContactsComponent,
-    AppActivityTimelineComponent
-  ],
-  templateUrl: './starter.component.html',
-  styleUrls: ['./starter.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-starter',
+    imports: [
+        MaterialModule,
+        AppSalesOverviewComponent,
+        AppSalesOurVisitorsComponent,
+        AppProfileCardComponent,
+        AppMyContactsComponent,
+        AppActivityTimelineComponent
+    ],
+    templateUrl: './starter.component.html',
+    styleUrls: ['./starter.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class StarterComponent { }
