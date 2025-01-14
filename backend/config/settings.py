@@ -29,17 +29,23 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+INSTALLED_DJANGO = [    'django.contrib.admin',
+                        'django.contrib.auth',
+                        'django.contrib.contenttypes',
+                        'django.contrib.sessions',
+                        'django.contrib.messages',
+                        'django.contrib.staticfiles',]
+INSTALLED_MY = [
+'account',
+'stock'
+]
+INSTALLED_THIRTY = [
+     'rest_framework',
 ]
 
-MIDDLEWARE = [
+INSTALLED_APPS = INSTALLED_DJANGO + INSTALLED_MY + INSTALLED_THIRTY
+
+MIDDLEWARE_DJANGO = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -48,8 +54,17 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+MIDDLEWARE_OTHER=[
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    ]
+MIDDLEWARE = MIDDLEWARE_DJANGO + MIDDLEWARE_OTHER
 
 ROOT_URLCONF = 'config.urls'
+
+CORS_ALLOWED_ORIGINS = [
+    "http://your_frontend_domain.com",  # Replace with frontend domain(s)
+]
 
 TEMPLATES = [
     {
