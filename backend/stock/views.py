@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from .serializers import MercanciaSerializer
+from .models import Mercancia
 
-# Create your views here.
+class MercanciaViewSet(viewsets.ModelViewSet):
+    queryset = Mercancia.objects.all()
+    serializer_class = MercanciaSerializer
