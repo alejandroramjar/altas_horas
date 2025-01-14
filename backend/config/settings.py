@@ -10,10 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -34,16 +36,48 @@ INSTALLED_DJANGO = [    'django.contrib.admin',
                         'django.contrib.contenttypes',
                         'django.contrib.sessions',
                         'django.contrib.messages',
-                        'django.contrib.staticfiles',]
-INSTALLED_MY = [
-'account',
-'stock'
-]
+                        'django.contrib.staticfiles',
+                        ]
+
 INSTALLED_THIRTY = [
-     'rest_framework',
+    'corsheaders',
+   'jet.dashboard',
+    'jet',
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
+]
+INSTALLED_LOCAL = [
+
+'stock',
+'account',
 ]
 
-INSTALLED_APPS = INSTALLED_DJANGO + INSTALLED_MY + INSTALLED_THIRTY
+INSTALLED_APPS = INSTALLED_THIRTY + INSTALLED_DJANGO + INSTALLED_LOCAL
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'VERIFYING_KEY': None,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_TYPE_CLAIM': 'token_type',
+}
 
 MIDDLEWARE_DJANGO = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,11 +91,16 @@ MIDDLEWARE_DJANGO = [
 MIDDLEWARE_OTHER=[
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    #'accounts.middelware.LogURLMiddleware',  # middleware para registro de solicitudes y eventos por dirección e IP
+    #'accounts.middelware.TokenAuthMiddleware',  # middleware para verification auth mediante token para el admin site
     ]
 MIDDLEWARE = MIDDLEWARE_DJANGO + MIDDLEWARE_OTHER
 
 ROOT_URLCONF = 'config.urls'
 
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://your_frontend_domain.com",  # Replace with frontend domain(s)
 ]
@@ -136,3 +175,32 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# ***********************CONFIG EMAIL********************************************
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'koredatatesting@gmail.com'  # koredatatesting@gmail.com
+EMAIL_HOST_PASSWORD = 'audj ucrj qlbk xmon'  # audj ucrj qlbk xmon
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+ADMIN_EMAIL = 'ramjar2107@gmail.com'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+# *********************** END CONFIG EMAIL***************************************
+JET_DEFAULT_THEME = 'light-gray'
+JET_SIDE_MENU_COMPACT = False
+JET_CHANGE_FORM_SIBLING_LINKS = True
+JET_INDEX_DASHBOARD = 'jet.dashboard.dashboard.DefaultIndexDashboard'
+JET_APP_INDEX_DASHBOARD = 'jet.dashboard.dashboard.DefaultAppIndexDashboard'
+
+# from decouple import config
+# SITE_ID = 1
+# DJANGO_HOST = config('DJANGO_HOST', default='127.0.0.1')
+# DJANGO_PORT = config('DJANGO_PORT', default='8000')
+# FRONTEND_URL = config('FRONTEND_URL', default='http://localhost:8082')
+#
+# SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Almacena sesiones en la base de datos
+# SESSION_COOKIE_NAME = 'sessionid'  # Nombre de la cookie
+# SESSION_COOKIE_AGE = 12096  # Duración en segundos (2 semanas)
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Mantiene la sesión abierta al cerrar el navegador
+# SESSION_COOKIE_SECURE = False  # Solo enviar la cookie a través de HTTPS (opcional)
