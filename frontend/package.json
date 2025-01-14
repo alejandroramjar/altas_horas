@@ -1,12 +1,12 @@
 {
-  "name": "materialpro",
+  "name": "altas_horas",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test --code-coverage --include"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +24,7 @@
     "@ngx-translate/http-loader": "^7.0.0",
     "angular-tabler-icons": "^3.26.0",
     "apexcharts": "^3.35.3",
+    "karma-coverage-istanbul-reporter": "^3.0.3",
     "ng-apexcharts": "1.7.6",
     "ngx-scrollbar": "^11.0.0",
     "rxjs": "~7.5.0",
@@ -37,6 +38,7 @@
     "@angular/compiler-cli": "^19.0.6",
     "@types/date-fns": "^2.6.0",
     "@types/jasmine": "~4.3.0",
+    "@types/webpack-env": "^1.18.5",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
